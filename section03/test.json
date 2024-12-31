@@ -1,0 +1,26 @@
+{ticketLinkMemberId: 5, machineId: "1", scheduleStartDate: "2024-12-20",…
+}
+machineId
+: "1"
+scheduleDayList
+: [
+    {day: "6", startHour: "10", startMinute: "0", endHour: "11", endMinute: "0"
+    }
+]
+0
+: {day: "6", startHour: "10", startMinute: "0", endHour: "11", endMinute: "0"
+}
+day
+: "6"
+endHour
+: "11"
+endMinute
+: "0"
+startHour
+: "10"
+startMinute
+: "0"
+scheduleStartDate
+: "2024-12-20"
+ticketLinkMemberId
+: 5
