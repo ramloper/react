@@ -6,7 +6,7 @@ import { useState, useContext } from 'react'
 import { DiaryStateContext } from "../App"
 
 const getMonthlyData = (pivotDate, data) => {
-    return data.filter((item) => item.createdDate.getMonth() === pivotDate.getMonth())
+    return data.filter((item) => new Date(item.createdDate).getMonth() === new Date(pivotDate).getMonth())
 }
 
 export default function Home() {

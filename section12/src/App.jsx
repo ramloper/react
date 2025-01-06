@@ -5,43 +5,64 @@ import Diary from "./page/Diary"
 import New from "./page/New"
 import Edit from "./page/Edit"
 import NotFound from './page/NotFound'
-import { useReducer, useRef, useContext } from 'react'
+import { useReducer, useRef, useContext, useEffect } from 'react'
 import { createContext } from 'react'
 
-const mockData = [
-  {
-    id: 1,
-    createdDate: new Date("2025-01-03"),
-    emotionId: 1,
-    content: "Number 1 diary"
-  }, {
-    id: 2,
-    createdDate: new Date("2025-01-02"),
-    emotionId: 2,
-    content: "Number 2 diary"
-  }, {
-    id: 3,
-    createdDate: new Date("2024-12-29"),
-    emotionId: 3,
-    content: "Number 3 diary"
-  }
-]
 
 function reducer(state, action) {
+  let nextState;
   switch (action.type) {
-    case 'create': return [action.data, ...state]
-    case 'update': state.map((item) => String(item.id) === String(action.data.id) ? action.data : item)
-    case 'delete': return state.filter((item) => String(item.id) !== String(action.id))
-    default: return state
+    case 'create': {
+      nextState = [action.data, ...state]
+      break
+    }
+    case 'update': {
+      nextState = state.map((item) => String(item.id) === String(action.data.id) ? action.data : item)
+      break
+    }
+    case 'delete': {
+      nextState = state.filter((item) => String(item.id) !== String(action.id))
+      break
+    }
+    case 'init': {
+      return action.data;
+    }
+    default: return nextState
   }
+  localStorage.setItem("diary", JSON.stringify(nextState))
+  return nextState
 }
 
 export const DiaryStateContext = createContext();
 export const DiaryDispatchContext = createContext();
 
 function App() {
-  const [data, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(3)
+  const [data, dispatch] = useReducer(reducer, []);
+  const idRef = useRef()
+  useEffect(() => {
+    let maxId = 0;
+    const storedData = localStorage.getItem("diary");
+    if (!storedData) {
+      idRef.current = maxId + 1
+      return;
+    }
+    const parsedData = JSON.parse(storedData)
+
+    if (!Array.isArray(parsedData)) return;
+
+    parsedData.forEach((item) => {
+      if (Number(item.id) > maxId) {
+        maxId = Number(item.id)
+      }
+    })
+    idRef.current = maxId + 1
+    console.log(idRef.current);
+
+    dispatch({
+      type: "init",
+      data: parsedData
+    })
+  }, [])
   const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: "create",
