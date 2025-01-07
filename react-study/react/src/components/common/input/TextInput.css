@@ -1,0 +1,12 @@
+.TextInput {
+    width: 100%;
+    max-width: 593px;
+    height: var(--form-height);
+    padding: 0 16px;
+    border: 1px solid var(--gray4);
+    border-radius: var(--form--radius);
+    font-size: var(--form-font);
+    color: var(--black3);
+    flex-basis: 50px;
+    font-size: 18px;
+}

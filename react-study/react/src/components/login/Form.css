@@ -1,0 +1,52 @@
+.loginWrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 30px;
+    max-width: 480px;
+    padding: 30px;
+    gap: 20px
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.txtC {
+    text-align: center;
+}
+
+.loginWrap .tit {
+    margin: 40px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black1);
+    text-align: center;
+}
+
+.formArea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formArea .error {
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: var(--red1);
+    line-height: 1.35;
+}
+
+.loginWrap .txtInfo {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--gray4);
+    font-size: 18px;
+    color: var(--black3);
+    word-break: break-all;
+}
