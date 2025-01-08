@@ -1,12 +1,9 @@
 import React from 'react'
 import "./Header.css"
-import { Link, useLocation, useParams } from 'react-router-dom'
 import { menuInfo } from '../left/menuInfoType'
 import HeaderMenu from './HeaderMenu'
-import { menuListStore } from '../../../store/store'
 
-export default function Header({ menuList }: { menuList: Array<menuInfo> }) {
-    const menuNumber = useLocation().state.menuNumber;
+export default function Header({ menuNumber, menuList }: { menuNumber: string, menuList: Array<menuInfo> }) {
     const equalsMenu = menuList.find((menu) => menuNumber === menu.menu_numb)
     if (!equalsMenu)
         return;

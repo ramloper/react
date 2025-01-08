@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Left.css"
 import LiContent from './LiContent'
 import { menuInfo } from './menuInfoType'
-import { menuListStore, menuStore } from '../../../store/store'
 
-export default function Left({ menuList }: { menuList: Array<menuInfo> }) {
+export default function Left({ menuList, onChangeMenuNumber }: { menuList: Array<menuInfo>, onChangeMenuNumber: Function }) {
+
     return (
         <header className='header'>
             <nav className='gnbWrap'>
@@ -20,7 +20,7 @@ export default function Left({ menuList }: { menuList: Array<menuInfo> }) {
                             ? <div>없음</div>
                             :
                             menuList.map((menu) => <LiContent key={menu.menu_numb}
-                                menuInfo={menu} />)
+                                menuInfo={menu} onChangeMenuNumber={onChangeMenuNumber} />)
                         }
                     </ul>
                     <ul className='gnbMenu'>
