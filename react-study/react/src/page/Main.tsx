@@ -24,7 +24,7 @@ export default function Main() {
             await getMenuList(menuAuthData, setMenuList);
         })();
     }, [])
-    const [menuNumber, setMenuNumber] = useState("");
+    const [menuNumber, setMenuNumber] = useState("/");
     const onChangeMenuNumber = (menuNumber: string) => {
         setMenuNumber(menuNumber)
     }

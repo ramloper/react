@@ -4,6 +4,9 @@ import { menuInfo } from '../left/menuInfoType'
 import HeaderMenu from './HeaderMenu'
 
 export default function Header({ menuNumber, menuList }: { menuNumber: string, menuList: Array<menuInfo> }) {
+    if (menuNumber === '/') {
+        return DashBoardHeader()
+    }
     const equalsMenu = menuList.find((menu) => menuNumber === menu.menu_numb)
     if (!equalsMenu)
         return;
@@ -19,6 +22,21 @@ export default function Header({ menuNumber, menuList }: { menuNumber: string, m
                     }
                 </ul>
             </nav>
+        </aside>
+    )
+}
+
+
+
+function DashBoardHeader() {
+    return (
+        <aside className='headerMenu'>
+            <div className='clockWrap'>
+                <div>현재시간</div>
+                <div></div>
+                <div></div>
+                <div>입니다</div>
+            </div>
         </aside>
     )
 }

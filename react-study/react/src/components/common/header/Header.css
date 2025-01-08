@@ -37,3 +37,13 @@
     color: #6C757D;
     line-height: 2.1;
 }
+
+
+.clockWrap {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    gap: 10px;
+}

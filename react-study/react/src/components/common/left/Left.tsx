@@ -10,7 +10,9 @@ export default function Left({ menuList, onChangeMenuNumber }: { menuList: Array
         <header className='header'>
             <nav className='gnbWrap'>
                 <h1 className='mb80'>
-                    <Link to={`/`}>
+                    <Link to={`/`}
+                        onClick={() => onChangeMenuNumber("/")}
+                    >
                         <img src='logo_login.svg' />
                     </Link>
                 </h1>
