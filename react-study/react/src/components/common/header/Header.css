@@ -1,0 +1,39 @@
+.headerMenu {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    transition: var(--transition);
+    padding-left: 30px;
+    margin-left: 300px;
+}
+
+.headerMenu>nav {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.headerMenuArea {
+    flex: 1;
+    position: relative;
+}
+
+.headerMenuMenu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.headerMenuMenu>li {
+    position: relative;
+    white-space: nowrap;
+    list-style: none;
+}
+
+.headerMenuMenu .depth1 {
+    display: block;
+    position: relative;
+    z-index: 3;
+    font-size: 16px;
+    color: #6C757D;
+    line-height: 2.1;
+}

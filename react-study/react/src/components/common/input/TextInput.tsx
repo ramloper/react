@@ -6,11 +6,17 @@ interface TextInput {
     title: string,
     placeholder: string,
     value: string,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onSubmit: Function | undefined
 }
 
-export default function TextInput({ name, id, title, placeholder, value, onChange }: TextInput) {
+export default function TextInput({ name, id, title, placeholder, value, onChange, onSubmit }: TextInput) {
     const inputType = name === 'password' ? "password" : "text"
+    const onKeyDownEvent = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" && onSubmit) {
+            onSubmit()
+        }
+    }
     return (
         <div>
             <input type={inputType} className='TextInput'
@@ -19,7 +25,8 @@ export default function TextInput({ name, id, title, placeholder, value, onChang
                 title={title}
                 placeholder={placeholder}
                 value={value}
-                onChange={onChange} />
+                onChange={onChange}
+                onKeyDown={(e) => onKeyDownEvent(e)} />
         </div>
     )
 }

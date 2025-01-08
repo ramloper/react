@@ -1,7 +1,8 @@
-import { authInfo } from "../../../types/loginInfoType";
+import { authInfo } from "../types/loginInfoType";
 import axios from "axios";
-import { menuInfo } from "./menuInfoType";
-export const getMenuList = async (menuAuthData: authInfo) => {
+import { menuInfo } from "../components/common/left/menuInfoType";
+
+export const getMenuList = async (menuAuthData: authInfo, setMenuList: Function) => {
     const requestParam = {
         auth_type: menuAuthData.auth_type,
         trgt_clss: "CNTR",
@@ -13,5 +14,6 @@ export const getMenuList = async (menuAuthData: authInfo) => {
 
     const response = await axios.get<{ menu_list: Array<menuInfo> }>(url);
     menuList = response.data.menu_list
-    return menuList
+
+    setMenuList(menuList)
 }

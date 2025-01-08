@@ -8,17 +8,15 @@ import Main from './page/Main'
 axios.defaults.baseURL = 'https://dev1.urbanlt.co.kr/fitmoabiz'
 
 function App() {
-  const loginInfo = {
-    memb_name: "",
-    memb_numb: "",
-    id: "",
-    cent_numb: "",
-    cent_info: ""
-  }
   return (
     <>
       <Routes>
-        <Route path='/' element={<Main />} />
+        <Route path='/' element={<Main />}>
+          <Route path='dashboard' element={<div>대쉬보드</div>} />
+          <Route path='memb/memberList.do' element={<div>회원관리</div>} />
+          <Route path='crsinfo/crsRegiSearch.do' element={<div>수강관리</div>} />
+        </Route>
+
         <Route path='/login' element={<Login />} />
       </Routes>
     </>

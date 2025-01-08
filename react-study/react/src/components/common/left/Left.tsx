@@ -1,26 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Left.css"
-import { authInfo } from '../../../types/loginInfoType'
-import { getMenuList } from './leftUtil'
-import { menuInfo } from "./menuInfoType";
 import LiContent from './LiContent'
+import { menuInfo } from './menuInfoType'
+import { menuListStore, menuStore } from '../../../store/store'
 
-export default function Left() {
-    const [data, setData] = useState<Array<menuInfo>>([]);
-    //ADMN 슈펴관리자
-    const mainAuth = localStorage.getItem("mainAuth")!
-    const nav = useNavigate();
-    if (!mainAuth) nav('/login')
-    const menuAuthData: authInfo = JSON.parse(mainAuth)
-
-    useEffect(() => {
-        (async () => {
-            const menuList = await getMenuList(menuAuthData)
-            setData(menuList);
-        })();
-    }, [])
-
+export default function Left({ menuList }: { menuList: Array<menuInfo> }) {
     return (
         <header className='header'>
             <nav className='gnbWrap'>
@@ -31,11 +16,11 @@ export default function Left() {
                 </h1>
                 <div className='leftArray'>
                     <ul className='gnbMenu'>
-                        {data.length === 0
+                        {menuList.length === 0
                             ? <div>없음</div>
                             :
-                            data.map((menu) => <LiContent key={menu.menu_numb}
-                                {...menu} />)
+                            menuList.map((menu) => <LiContent key={menu.menu_numb}
+                                menuInfo={menu} />)
                         }
                     </ul>
                     <ul className='gnbMenu'>

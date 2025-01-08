@@ -41,16 +41,11 @@ export default function Form() {
             [name]: value
         })
     }
-    const [ip, setIp] = useState();
-    useEffect(() => {
-        axios.get('https://geolocation-db.com/json/')
-            .then((res) => setIp(res.data.IPv4))
-    }, [])
     const loginActionObject = {
         cntr_numb: "KBS0000000",
         login_id: loginData.id,
         login_pswd: loginData.password,
-        ip: ip,
+        ip: "172.0.0.0",
         login_type: "MNGR",
         login_path: "http://localhost:5143/login",
         tmnl_type: isMobile ? "MOBI" : "PC"
@@ -101,7 +96,8 @@ export default function Form() {
                             placeholder={`아이디를 입력해주세요.`}
                             title='아이디 입력'
                             value={loginData.id}
-                            onChange={onChangeLoginData} />
+                            onChange={onChangeLoginData}
+                            onSubmit={undefined} />
                     </div>
                 </div>
                 <div>
@@ -112,7 +108,8 @@ export default function Form() {
                             placeholder={`비밀번호를 입력해주세요.`}
                             title='아이디 입력'
                             value={loginData.password}
-                            onChange={onChangeLoginData} />
+                            onChange={onChangeLoginData}
+                            onSubmit={loginAction} />
                     </div>
                 </div>
                 <CheckboxInput

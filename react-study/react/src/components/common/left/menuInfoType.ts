@@ -14,4 +14,5 @@ export interface menuInfo {
     disp_name: string,
     img_file_list: Array<img_file>
     menu_numb: string
+    chlid_menu_list: Array<menuInfo>
 }
