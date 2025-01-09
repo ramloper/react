@@ -4,16 +4,14 @@ import "./Left.css"
 import LiContent from './LiContent'
 import { menuInfo } from './menuInfoType'
 
-export default function Left({ menuList, onChangeMenuNumber }: { menuList: Array<menuInfo>, onChangeMenuNumber: Function }) {
+export default function Left({ menuList }: { menuList: Array<menuInfo> }) {
 
     return (
         <header className='header'>
             <nav className='gnbWrap'>
                 <h1 className='mb80'>
-                    <Link to={`/`}
-                        onClick={() => onChangeMenuNumber("/")}
-                    >
-                        <img src='logo_login.svg' />
+                    <Link to={`/`}>
+                        <img src='/logo_login.svg' />
                     </Link>
                 </h1>
                 <div className='leftArray'>
@@ -21,14 +19,13 @@ export default function Left({ menuList, onChangeMenuNumber }: { menuList: Array
                         {menuList.length === 0
                             ? <div>없음</div>
                             :
-                            menuList.map((menu) => <LiContent key={menu.menu_numb}
-                                menuInfo={menu} onChangeMenuNumber={onChangeMenuNumber} />)
+                            menuList.map((menu) => <LiContent key={menu.menu_numb} menuInfo={menu} />)
                         }
                     </ul>
                     <ul className='gnbMenu'>
                         <li>
                             <Link to={`/`} >
-                                <img src='logout_icon.svg' />
+                                <img src='/logout_icon.svg' />
                                 <p className='menu'>로그아웃</p>
                             </Link>
                         </li>

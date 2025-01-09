@@ -2,15 +2,14 @@ import React from 'react'
 import "./Header.css"
 import { menuInfo } from '../left/menuInfoType'
 import HeaderMenu from './HeaderMenu'
+import { useLocation } from 'react-router-dom'
 
-export default function Header({ menuNumber, menuList }: { menuNumber: string, menuList: Array<menuInfo> }) {
-    if (menuNumber === '/') {
+export default function Header({ childMenuList }: { childMenuList: Array<menuInfo> }) {
+
+    if (childMenuList.length === 0) {
         return DashBoardHeader()
     }
-    const equalsMenu = menuList.find((menu) => menuNumber === menu.menu_numb)
-    if (!equalsMenu)
-        return;
-    const childMenuList = equalsMenu.chlid_menu_list
+
 
     return (
         <aside className='headerMenu'>

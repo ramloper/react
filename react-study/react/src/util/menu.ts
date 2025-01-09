@@ -17,3 +17,15 @@ export const getMenuList = async (menuAuthData: authInfo, setMenuList: Function)
 
     setMenuList(menuList)
 }
+
+
+export const getChildMenuList = (pathName: string, menuList: Array<menuInfo>): Array<menuInfo> => {
+    if (pathName === '/') {
+        return []
+    }
+    const equalsMenu = menuList.find((menu) => pathName === menu.menu_prgm_name)
+    if (!equalsMenu)
+        return [];
+    const childMenuList = equalsMenu.chlid_menu_list
+    return childMenuList
+}

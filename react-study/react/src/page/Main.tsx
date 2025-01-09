@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import "./Main.css"
 import { menuInfo } from '../components/common/left/menuInfoType';
 import { authInfo } from '../types/loginInfoType';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import Left from '../components/common/left/Left'
 import Header from '../components/common/header/Header';
-import { getMenuList } from '../util/menu';
+import { getMenuList, getChildMenuList } from '../util/menu';
 import { useLoginRedirect } from '../hooks/useRedirect';
 
 
@@ -24,15 +24,15 @@ export default function Main() {
             await getMenuList(menuAuthData, setMenuList);
         })();
     }, [])
-    const [menuNumber, setMenuNumber] = useState("/");
-    const onChangeMenuNumber = (menuNumber: string) => {
-        setMenuNumber(menuNumber)
-    }
+    const { pathname } = useLocation();
+    const childMenuList = getChildMenuList(pathname, menuList)
+    console.log("?");
+
     return (
         <div className='wrap'>
             <div>
-                <Left menuList={menuList} onChangeMenuNumber={onChangeMenuNumber} />
-                <Header menuNumber={menuNumber} menuList={menuList} />
+                <Left menuList={menuList} />
+                <Header childMenuList={childMenuList} />
             </div>
             <main className='mainWrap'>
                 <Outlet />
